@@ -1,19 +1,16 @@
-import * as React from 'react';
-import { useActions } from 'main/common/ActionHelpers';
-import { useServices } from 'main/services';
-import { HomeActions, HomeContext } from '../module';
 import { Button } from 'main/components/Button';
+import { useServices } from 'main/services';
+import * as React from 'react';
+import { HomeContext } from '../module';
 
 export const HomeView = () => {
   const { state } = React.useContext(HomeContext);
-  const { homeRepository } = useServices();
-  const { updateHome } = useActions(HomeContext, HomeActions);
+  const { homeDomain } = useServices();
+  const updateHome = homeDomain.useUpdateHome();
 
   React.useEffect(() => {
-    homeRepository.getMock().then(({ home }) => {
-      updateHome(home);
-    });
-  }, [homeRepository, updateHome]);
+    updateHome();
+  }, [updateHome]);
 
   return (
     <div>

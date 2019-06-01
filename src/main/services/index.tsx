@@ -1,4 +1,6 @@
 import React from 'react';
+import { useActions } from 'main/common/ActionHelpers';
+import { HomeContext, HomeActions } from 'main/modules/home/module';
 
 const basePath = (() => {
   switch (process.env.REACT_APP_STAGE) {
@@ -28,8 +30,20 @@ class HomeRepository {
 }
 const homeRepository = new HomeRepository(httpClient);
 
+class HomeDomain {
+  useUpdateHome() {
+    const { updateHome } = useActions(HomeContext, HomeActions);
+    return async () => {
+      const { home } = await homeRepository.getMock();
+      updateHome(home);
+    };
+  }
+}
+const homeDomain = new HomeDomain();
+
 const value = {
   homeRepository,
+  homeDomain,
 };
 
 const ServiceContext = React.createContext(value);
