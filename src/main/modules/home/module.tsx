@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { AnyAction, createActions } from 'main/common/ActionHelpers';
-import { Home } from './Home';
+import { HomeView } from './components/HomeView';
 
 export const HomeContext = React.createContext<{
   state: HomeState;
@@ -33,7 +33,7 @@ export const HomeModule = () => {
 
   return (
     <HomeContext.Provider value={value}>
-      <Home />
+      <HomeView />
     </HomeContext.Provider>
   );
 };

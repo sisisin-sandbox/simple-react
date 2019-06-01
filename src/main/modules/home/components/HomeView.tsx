@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { useActions } from 'main/common/ActionHelpers';
 import { useServices } from 'main/services';
-import { HomeActions, HomeContext } from './module';
+import { HomeActions, HomeContext } from '../module';
 import { Button } from 'main/components/Button';
 
-export const Home = () => {
+export const HomeView = () => {
   const { state } = React.useContext(HomeContext);
   const { homeRepository } = useServices();
   const { updateHome } = useActions(HomeContext, HomeActions);
