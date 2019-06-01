@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AnyAction, createActions } from '../../common/ActionHelpers';
+import { AnyAction, createActions } from 'main/common/ActionHelpers';
 import { Home } from './Home';
 
 export const HomeContext = React.createContext<{

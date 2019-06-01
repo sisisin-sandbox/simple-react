@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { useActions } from '../../common/ActionHelpers';
-import { useServices } from '../../services';
+import { useActions } from 'main/common/ActionHelpers';
+import { useServices } from 'main/services';
 import { HomeActions, HomeContext } from './module';
 
 export const Home = () => {
