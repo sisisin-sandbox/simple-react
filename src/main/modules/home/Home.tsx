@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useActions } from 'main/common/ActionHelpers';
 import { useServices } from 'main/services';
 import { HomeActions, HomeContext } from './module';
+import { Button } from 'main/components/Button';
 
 export const Home = () => {
   const { state } = React.useContext(HomeContext);
@@ -14,5 +15,10 @@ export const Home = () => {
     });
   }, [homeRepository, updateHome]);
 
-  return <div>this is {JSON.stringify(state)}</div>;
+  return (
+    <div>
+      <div>this is {JSON.stringify(state)}</div>
+      <Button />
+    </div>
+  );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { HomeModule } from './components/home/module';
+import { HomeModule } from './modules/home/module';
 import { ServiceContextDefaultProvider } from './services';
 
 export const App: React.FC = () => {
