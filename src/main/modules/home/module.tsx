@@ -1,26 +1,24 @@
-import * as React from 'react';
-import { AnyAction, createActions } from 'main/common/ActionHelpers';
+import { createModule } from 'main/common/createModule';
+import React from 'react';
 import { HomeView } from './components/HomeView';
-
-export const HomeContext = React.createContext<{
-  state: HomeState;
-  dispatch: <T extends AnyAction>(action: T) => void;
-}>(null as any);
 
 interface HomeState {
   counter: number;
   home: string | null;
 }
 
-export const HomeActions = createActions('home', {
+const { Context: HomeContext, Actions, createUseState, useActions } = createModule('home', {
   increment: null,
   updateHome: (home: string) => ({ home }),
 });
 
+export const useHomeState = createUseState<HomeState>();
+export const useHomeActions = useActions;
+
 const homeReducer = (state: HomeState, action: any): HomeState => {
-  if (HomeActions.updateHome.match(action)) {
+  if (Actions.updateHome.match(action)) {
     return { ...state, home: action.payload.home };
-  } else if (HomeActions.increment.match(action)) {
+  } else if (Actions.increment.match(action)) {
     return { ...state, counter: state.counter + 1 };
   } else {
     return state;

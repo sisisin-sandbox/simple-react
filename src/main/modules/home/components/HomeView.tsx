@@ -1,10 +1,10 @@
 import { Button } from 'main/components/Button';
 import { useServices } from 'main/services';
 import * as React from 'react';
-import { HomeContext } from '../module';
+import { useHomeState } from '../module';
 
 export const HomeView = () => {
-  const { state } = React.useContext(HomeContext);
+  const state = useHomeState();
   const { homeDomain } = useServices();
   const updateHome = homeDomain.useUpdateHome();
 

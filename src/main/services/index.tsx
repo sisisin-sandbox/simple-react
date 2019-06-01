@@ -1,6 +1,5 @@
+import { useHomeActions } from 'main/modules/home/module';
 import React from 'react';
-import { useActions } from 'main/common/ActionHelpers';
-import { HomeContext, HomeActions } from 'main/modules/home/module';
 
 const basePath = (() => {
   switch (process.env.REACT_APP_STAGE) {
@@ -32,7 +31,7 @@ const homeRepository = new HomeRepository(httpClient);
 
 class HomeDomain {
   useUpdateHome() {
-    const { updateHome } = useActions(HomeContext, HomeActions);
+    const { updateHome } = useHomeActions();
     return async () => {
       const { home } = await homeRepository.getMock();
       updateHome(home);
