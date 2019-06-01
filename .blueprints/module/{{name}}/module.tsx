@@ -1,22 +1,18 @@
-import * as React from 'react';
-import { AnyAction, createActions } from 'main/common/ActionHelpers';
+import React from 'react';
+import { createModule } from 'main/common/createModule';
 import { {{pascalCase name}}View } from './components/{{pascalCase name}}View';
-
-export const {{pascalCase name}}Context = React.createContext<{
-  state: {{pascalCase name}}State;
-  dispatch: <T extends AnyAction>(action: T) => void;
-}>(null as any);
 
 interface {{pascalCase name}}State {
   foo: string;
 }
-
-export const {{pascalCase name}}Actions = createActions('{{camelCase name}}', {
+const { Context: {{pascalCase name}}Context, Actions, createUseState, useActions } = createModule('{{camelCase name}}', {
   updateFoo: (foo: string) => ({ foo }),
 });
+export const use{{pascalCase name}}State = createUseState<{{pascalCase name}}State>();
+export const use{{pascalCase name}}Actions = useActions;
 
 const {{camelCase name}}Reducer = (state: {{pascalCase name}}State, action: any): {{pascalCase name}}State => {
-  if ({{pascalCase name}}Actions.updateFoo.match(action)) {
+  if (Actions.updateFoo.match(action)) {
     return { foo: action.payload.foo };
   } else {
     return state;
