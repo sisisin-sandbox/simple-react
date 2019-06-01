@@ -1,6 +1,11 @@
 import React from 'react';
-import { Home } from './components/home/Home';
+import { HomeContainer } from './components/home/Home';
+import { ServiceContextDefaultProvider } from './services';
 
 export const App: React.FC = () => {
-  return <Home />;
+  return (
+    <ServiceContextDefaultProvider>
+      <HomeContainer />
+    </ServiceContextDefaultProvider>
+  );
 };
